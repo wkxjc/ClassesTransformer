@@ -1,0 +1,3 @@
+include ':transformerPlugin'
+include ':app'
+rootProject.name = "ClassesTransformer"
