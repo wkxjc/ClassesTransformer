@@ -3,7 +3,7 @@ package com.classes.transformer.plugin.visitors
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 
-class LifecycleMethodVisitor(mv: MethodVisitor, private val className: String, private val methodName: String) :
+class LifecycleMethodVisitor(mv: MethodVisitor, private val className: String?, private val methodName: String?) :
     MethodVisitor(Opcodes.ASM5, mv) {
     override fun visitCode() {
         super.visitCode()
