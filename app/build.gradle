@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-//apply plugin: 'transformerPluginProperties'
+apply plugin: 'transformerPluginProperties'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
