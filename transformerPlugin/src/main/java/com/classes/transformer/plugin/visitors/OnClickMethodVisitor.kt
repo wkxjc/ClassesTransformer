@@ -21,13 +21,5 @@ class OnClickMethodVisitor(val methodVisitor: MethodVisitor) : MethodVisitor(Opc
         methodVisitor.visitJumpInsn(IFEQ, label1)
         methodVisitor.visitInsn(RETURN)
         methodVisitor.visitLabel(label1)
-        methodVisitor.visitLineNumber(12, label1)
-        methodVisitor.visitFrame(Opcodes.F_SAME, 0, null, 0, null)
-        methodVisitor.visitInsn(RETURN)
-        val label2 = Label()
-        methodVisitor.visitLabel(label2)
-        methodVisitor.visitLocalVariable("this", "Lcom/classes/transformer/Test;", null, label0, label2, 0)
-        methodVisitor.visitLocalVariable("v", "Landroid/view/View;", null, label0, label2, 1)
-        methodVisitor.visitMaxs(2, 2)
     }
 }

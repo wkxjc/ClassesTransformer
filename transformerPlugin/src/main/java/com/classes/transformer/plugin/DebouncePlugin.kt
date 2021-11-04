@@ -21,7 +21,7 @@ class DebouncePlugin : Plugin<Project> {
         injectConfig = project.extensions.create(INJECT_EXTENSION_NAME, InjectConfig::class.java)
         project.task("insertFile") {
             LogUtil.log("DebouncePlugin coming, injectConfig: $injectConfig")
-            val filePath = "${project.buildDir}/generated/source/com/classes/transformer"
+            val filePath = "${project.buildDir}/generated/source/buildConfig/debug/com/classes/transformer"
             val file = File(filePath, "DebounceClickChecker.kt")
             file.parentFile.mkdirs()
             val writer = BufferedWriter(FileWriter(file))
@@ -29,17 +29,21 @@ class DebouncePlugin : Plugin<Project> {
                 it.write(
                     """
                 package com.classes.transformer
+                
+                import android.util.Log
 
                 object DebounceClickChecker {
                     var lastClickViewId = -1
                     var lastClickTime = 0L
                     fun needIntercept(viewId: Int): Boolean {
+                        Log.d("~~~", "coming: " + viewId + ", " + lastClickTime + ", " + lastClickViewId)
                         val time = System.currentTimeMillis()
                         val intercept = viewId == lastClickViewId && time - lastClickTime < ${injectConfig.debounceIntervalTime}
                         if (!intercept) {
                             lastClickTime = time
                             lastClickViewId = viewId
                         }
+                        Log.d("~~~", "intercept: " + intercept)
                         return intercept
                     }
                 }
