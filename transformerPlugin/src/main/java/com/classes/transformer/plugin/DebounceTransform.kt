@@ -2,6 +2,7 @@ package com.classes.transformer.plugin
 
 import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
+import com.classes.transformer.plugin.utils.LogUtil
 import com.classes.transformer.plugin.utils.traverse
 import com.classes.transformer.plugin.visitors.DebounceClassVisitor
 import org.apache.commons.io.FileUtils
@@ -16,12 +17,14 @@ class DebounceTransform : Transform() {
 
     override fun getInputTypes(): MutableSet<QualifiedContent.ContentType> = TransformManager.CONTENT_CLASS
 
-    override fun getScopes(): MutableSet<in QualifiedContent.Scope> = TransformManager.PROJECT_ONLY
+    override fun getScopes(): MutableSet<in QualifiedContent.Scope> = TransformManager.SCOPE_FULL_PROJECT
 
     override fun isIncremental() = false
 
     override fun transform(transformInvocation: TransformInvocation?) {
+        LogUtil.log("DebounceTransform start")
         transformInvocation?.inputs?.forEach {
+            LogUtil.log("TransformInput: $it")
             it.directoryInputs.forEach { input ->
                 transformDirectoryInput(input)
                 FileUtils.copyDirectory(input.file, transformInvocation.outputProvider.getContentLocation(input.name, input.contentTypes, input.scopes, Format.DIRECTORY))
@@ -30,10 +33,14 @@ class DebounceTransform : Transform() {
                 FileUtils.copyFile(input.file, transformInvocation.outputProvider.getContentLocation(input.name, input.contentTypes, input.scopes, Format.JAR))
             }
         }
+
+
+        LogUtil.log("DebounceTransform finish")
     }
 
     private fun transformDirectoryInput(input: DirectoryInput) {
         input.file.traverse().filter { classesFilter(it) }.forEach { file ->
+            LogUtil.log("Find file: $file")
             val classReader = ClassReader(file.readBytes())
             val classWriter = ClassWriter(classReader, ClassWriter.COMPUTE_MAXS)
             classReader.accept(DebounceClassVisitor(classWriter), ClassReader.EXPAND_FRAMES)

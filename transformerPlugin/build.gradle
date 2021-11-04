@@ -12,12 +12,16 @@ dependencies {
 }
 
 group = 'transformer.plugin'
-version = '0.0.1'
+
+Properties versionProp = new Properties()
+versionProp.load(new FileInputStream(file('../version.properties')))
+String versionName = versionProp['LIB_VERSION_NAME'].toString()
 
 publishing {
     publications {
         maven(MavenPublication) {
             artifactId "transformerPlugin"
+            version versionName
             from components.java
         }
     }
