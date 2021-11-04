@@ -1,21 +1,29 @@
 apply plugin: 'groovy'
 apply plugin: 'kotlin'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
-    implementation 'com.android.tools.build:gradle:4.0.1'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.3.72"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'com.android.tools.build:gradle:4.1.3'
+    implementation 'org.ow2.asm:asm:9.1'
+    implementation 'org.ow2.asm:asm-commons:9.1'
 }
 
 group = 'transformer.plugin'
 version = '0.0.1'
 
-uploadArchives {
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId "transformerPlugin"
+            from components.java
+        }
+    }
     repositories {
-        mavenDeployer {
-            repository(url: uri('../transformerRepo'))
+        maven {
+            url '../transformerRepo'
         }
     }
 }

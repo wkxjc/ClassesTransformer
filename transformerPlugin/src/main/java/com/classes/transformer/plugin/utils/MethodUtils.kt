@@ -15,18 +15,6 @@ object MethodUtils {
 
     fun isSynthetic(access: Int) = access and Opcodes.ACC_SYNTHETIC != 0
 
-    fun isLifecycleMethod(superName: String?, name: String?) =
-        !superName.isNullOrEmpty() && !name.isNullOrEmpty()
-                && superName == "androidx/appcompat/app/AppCompatActivity"
-                && (name.startsWith("onCreate")
-                || name.startsWith("onStart")
-                || name.startsWith("onResume")
-                || name.startsWith("onPause")
-                || name.startsWith("onStop")
-                || name.startsWith("onDestroy")
-                || name.startsWith("onRestart")
-                || name.startsWith("onNewIntent"))
-
     fun isViewOnclickMethod(access: Int, name: String?, desc: String?) = isPublic(access) && !isStatic(access) && !isAbstract(access)
             && name == "onClick" && desc == "(Landroid/view/View;)V"
 
