@@ -1,11 +1,14 @@
 package com.classes.transformer.plugin
 
 import com.android.build.gradle.AppExtension
-import com.classes.transformer.plugin.insertFile.GenerateFileFactory
+import com.classes.transformer.plugin.generate.GenerateFileFactory
 import com.classes.transformer.plugin.utils.LogUtil
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
+/**
+ * Created by Kevin 2021-11-05
+ */
 class DebouncePlugin : Plugin<Project> {
     companion object {
         lateinit var project: Project

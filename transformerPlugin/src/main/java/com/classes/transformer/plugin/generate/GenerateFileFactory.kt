@@ -1,4 +1,4 @@
-package com.classes.transformer.plugin.insertFile
+package com.classes.transformer.plugin.generate
 
 import com.android.build.gradle.AppExtension
 import com.classes.transformer.plugin.DebouncePlugin
@@ -47,7 +47,7 @@ object GenerateFileFactory {
                        fun needIntercept(view: View?): Boolean {
                            view ?: return false
                            val time = System.currentTimeMillis()
-                           val intercept = view.id == lastClickViewId && time - lastClickTime < 500
+                           val intercept = view.id == lastClickViewId && time - lastClickTime < ${DebouncePlugin.debounceConfig.debounceIntervalTime}
                            if (!intercept) {
                                lastClickTime = time
                                lastClickViewId = view.id

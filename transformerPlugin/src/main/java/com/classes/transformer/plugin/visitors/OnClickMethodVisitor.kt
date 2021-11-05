@@ -6,6 +6,9 @@ import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 import org.objectweb.asm.Opcodes.*
 
+/**
+ * Created by Kevin 2021-11-05
+ */
 class OnClickMethodVisitor(private val methodVisitor: MethodVisitor) : MethodVisitor(Opcodes.ASM5, methodVisitor) {
     override fun visitCode() {
         super.visitCode()

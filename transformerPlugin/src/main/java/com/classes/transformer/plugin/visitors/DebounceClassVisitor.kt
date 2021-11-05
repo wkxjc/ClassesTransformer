@@ -6,6 +6,9 @@ import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 
+/**
+ * Created by Kevin 2021-11-05
+ */
 class DebounceClassVisitor(cv: ClassVisitor) : ClassVisitor(Opcodes.ASM5, cv) {
     // if there's no method changed, then it's not necessary to rewrite this class file.
     var methodChanged = false

@@ -2,6 +2,9 @@ package com.classes.transformer.plugin.utils
 
 import org.objectweb.asm.Opcodes
 
+/**
+ * Created by Kevin 2021-11-05
+ */
 object MethodUtils {
     fun isPrivate(access: Int) = access and Opcodes.ACC_PRIVATE != 0
 
