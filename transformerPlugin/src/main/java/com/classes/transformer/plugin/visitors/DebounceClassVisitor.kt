@@ -15,6 +15,7 @@ class DebounceClassVisitor(cv: ClassVisitor) : ClassVisitor(Opcodes.ASM5, cv) {
 
     override fun visitMethod(access: Int, name: String?, descriptor: String?, signature: String?, exceptions: Array<out String>?): MethodVisitor {
         val mv = cv.visitMethod(access, name, descriptor, signature, exceptions)
+        LogUtil.log("Check method: name = $name\n desc = $descriptor\n signature = $signature\n isPublic = ${MethodUtils.isPublic(access)}\n isStatic = ${MethodUtils.isStatic(access)}\n isAbstract = ${MethodUtils.isAbstract(access)}\n isSynthetic = ${MethodUtils.isSynthetic(access)}\n isBridge = ${MethodUtils.isBridge(access)}\n isPrivate = ${MethodUtils.isPrivate(access)}")
         if (MethodUtils.isViewOnclickMethod(access, name, descriptor)) {
             LogUtil.log("Find method: $name")
             methodChanged = true

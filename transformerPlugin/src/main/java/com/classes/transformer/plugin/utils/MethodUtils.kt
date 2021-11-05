@@ -18,11 +18,13 @@ object MethodUtils {
 
     fun isSynthetic(access: Int) = access and Opcodes.ACC_SYNTHETIC != 0
 
-    fun isViewOnclickMethod(access: Int, name: String?, desc: String?) = isPublic(access) && !isStatic(access) && !isAbstract(access)
-            && name == "onClick" && desc == "(Landroid/view/View;)V"
-
-    fun isListViewOnItemOnclickMethod(access: Int, name: String, desc: String) = isPublic(access) && !isStatic(access) && !isAbstract(access)
-            && name == "onItemClick" && desc == "(Landroid/widget/AdapterView;Landroid/view/View;IJ)V"
-
+    fun isViewOnclickMethod(access: Int, name: String?, desc: String?): Boolean {
+//        LogUtil.log(
+//            "Normal onclickListener: ${(isPublic(access) && !isStatic(access) && !isAbstract(access) && name == "onClick" && desc == "(Landroid/view/View;)V")}\n" +
+//                    "Kotlin lambda: ${(!isPublic(access) && isStatic(access) && !isAbstract(access) && name?.contains("${'$'}lambda") == true && desc == "(Landroid/view/View;)V")}"
+//        )
+        return (isPublic(access) && !isStatic(access) && !isAbstract(access) && name == "onClick" && desc == "(Landroid/view/View;)V")
+//                || (!isPublic(access) && isStatic(access) && !isAbstract(access) && name?.contains("${'$'}lambda") == true && desc == "(Landroid/view/View;)V")
+    }
 }
 

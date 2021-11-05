@@ -22,15 +22,15 @@ object GenerateFileFactory {
     }
 
     private fun insertGenerateFileTask() {
-        LogUtil.log("Create gradle task: $GENERATE_FILE_TASK_NAME")
+        LogUtil.log("Create task: $GENERATE_FILE_TASK_NAME")
         DebouncePlugin.project.task(GENERATE_FILE_TASK_NAME) {
             val file = File(GENERATED_FILE_SAVED_DIR, GENERATED_FILE_NAME)
             file.parentFile.mkdirs()
+            LogUtil.log("Generate file: $GENERATED_FILE_NAME")
             val writer = BufferedWriter(FileWriter(file))
             writer.use { it.write(debounceClickCheckerFileContent()) }
-            LogUtil.log("$GENERATED_FILE_NAME has generated.")
         }
-        LogUtil.log("Insert $GENERATE_FILE_TASK_NAME before first task: ${DebouncePlugin.project.tasks.first()}")
+        LogUtil.log("Insert task $GENERATE_FILE_TASK_NAME before: ${DebouncePlugin.project.tasks.first()}")
         DebouncePlugin.project.tasks.first().dependsOn(GENERATE_FILE_TASK_NAME)
     }
 
@@ -73,7 +73,7 @@ object GenerateFileFactory {
         val androidExtension = DebouncePlugin.project.extensions.getByType(AppExtension::class.java)
         androidExtension.sourceSets.getByName("main").java.run {
             setSrcDirs(srcDirs.plus(GENERATED_FILE_SAVED_DIR))
-            LogUtil.log("$GENERATED_FILE_SAVED_DIR has added to sourceSets, srcDirs: $srcDirs")
+            LogUtil.log("Add generated file saved dir to sourceSets: $srcDirs")
         }
     }
 }
