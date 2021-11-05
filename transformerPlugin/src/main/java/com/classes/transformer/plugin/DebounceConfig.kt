@@ -1,6 +1,9 @@
 package com.classes.transformer.plugin
 
-open class InjectConfig {
+/**
+ * Created by Kevin 2021-11-05
+ */
+open class DebounceConfig {
     /** display inject plugin debug log if true */
     @JvmField
     var isDebug: Boolean = true
@@ -19,4 +22,4 @@ open class InjectConfig {
 }
 
 /** extension name in build.gradle */
-const val INJECT_EXTENSION_NAME = "injectConfig"
+const val EXTENSION_PLUGIN_NAME = "debounceConfig"

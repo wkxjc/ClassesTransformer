@@ -22,7 +22,7 @@ class DebounceTransform : Transform() {
     override fun isIncremental() = false
 
     override fun transform(transformInvocation: TransformInvocation?) {
-        LogUtil.log("DebounceTransform start")
+        LogUtil.log("DebounceTransform starts")
         transformInvocation?.inputs?.forEach {
             LogUtil.log("TransformInput: $it")
             it.directoryInputs.forEach { input ->
@@ -33,17 +33,20 @@ class DebounceTransform : Transform() {
                 FileUtils.copyFile(input.file, transformInvocation.outputProvider.getContentLocation(input.name, input.contentTypes, input.scopes, Format.JAR))
             }
         }
-
-
-        LogUtil.log("DebounceTransform finish")
+        LogUtil.log("DebounceTransform finished")
     }
 
     private fun transformDirectoryInput(input: DirectoryInput) {
-        input.file.traverse().filter { classesFilter(it) }.forEach { file ->
+        input.file.traverse().filter {
+            classesFilter(it)
+        }.forEach { file ->
             LogUtil.log("Find file: $file")
             val classReader = ClassReader(file.readBytes())
             val classWriter = ClassWriter(classReader, ClassWriter.COMPUTE_MAXS)
-            classReader.accept(DebounceClassVisitor(classWriter), ClassReader.EXPAND_FRAMES)
+            val debounceClassVisitor = DebounceClassVisitor(classWriter)
+            classReader.accept(debounceClassVisitor, ClassReader.EXPAND_FRAMES)
+            LogUtil.log(if (debounceClassVisitor.methodChanged) "Start rewriting ${file.name}" else "No method changed in ${file.name}, continue")
+            if (!debounceClassVisitor.methodChanged) return@forEach
             FileOutputStream(file.path).use {
                 it.write(classWriter.toByteArray())
             }

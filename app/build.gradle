@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'transformerPluginProperties'
 
 android {
     compileSdkVersion 30
@@ -15,11 +14,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    android {
-        compileOptions {
-            sourceCompatibility 1.8
-            targetCompatibility 1.8
-        }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
 
     buildTypes {
@@ -29,6 +26,8 @@ android {
         }
     }
 }
+
+apply plugin: 'transformerPluginProperties'
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])

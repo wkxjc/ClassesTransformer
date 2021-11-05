@@ -4,11 +4,13 @@ import com.classes.transformer.plugin.DebouncePlugin
 
 /**
  * Created by Kevin 2020-08-14
- * Log util controlled by [InjectConfig.isDebug]
+ * Log util controlled by [DebouncePlugin.debounceConfig.isDebug]
  */
 object LogUtil {
     fun log(content: String) {
-        if (!DebouncePlugin.injectConfig.isDebug) return
+        if (!DebouncePlugin.debounceConfig.isDebug) {
+            return
+        }
         println(content)
     }
 }

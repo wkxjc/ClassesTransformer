@@ -29,11 +29,11 @@
         {
           "name": "transformerPlugin-0.0.2.jar",
           "url": "transformerPlugin-0.0.2.jar",
-          "size": 19175,
-          "sha512": "b7b2a19d93b6306e692e92d370f25a61215b16d20d0088a5fa4bdc36196a8d0a1f7779a1b994924966bbf78bc062ca28c58f53043020e871d1c30fe9c1bf9322",
-          "sha256": "bb3d159937ff55ee03905683d80a2c8e5da9c9cdde1203d78ba1abaf89b46a09",
-          "sha1": "1bfbe5d5335af804bb4a222e2102188a24468e9e",
-          "md5": "34d5acf5486b7d2306edd8f62f327aef"
+          "size": 22026,
+          "sha512": "eb484f6b96217f9a9bf59e8f5e4fbb0bc872fde02be7689d6df2308038ff2a394a149b9fd2411727622bd6ce15945bb9af80154806caed11fd8a943851dc1d8f",
+          "sha256": "9de9189ae51fa3e70b6b0e037dc82ea5ee1f1c1ea6e0fa20724fde01950d26d4",
+          "sha1": "46adf41252723b65de30a3d3b6f78d449cef99af",
+          "md5": "0a947c54aadb5eb130d7614932d6e77c"
         }
       ]
     },
@@ -82,11 +82,11 @@
         {
           "name": "transformerPlugin-0.0.2.jar",
           "url": "transformerPlugin-0.0.2.jar",
-          "size": 19175,
-          "sha512": "b7b2a19d93b6306e692e92d370f25a61215b16d20d0088a5fa4bdc36196a8d0a1f7779a1b994924966bbf78bc062ca28c58f53043020e871d1c30fe9c1bf9322",
-          "sha256": "bb3d159937ff55ee03905683d80a2c8e5da9c9cdde1203d78ba1abaf89b46a09",
-          "sha1": "1bfbe5d5335af804bb4a222e2102188a24468e9e",
-          "md5": "34d5acf5486b7d2306edd8f62f327aef"
+          "size": 22026,
+          "sha512": "eb484f6b96217f9a9bf59e8f5e4fbb0bc872fde02be7689d6df2308038ff2a394a149b9fd2411727622bd6ce15945bb9af80154806caed11fd8a943851dc1d8f",
+          "sha256": "9de9189ae51fa3e70b6b0e037dc82ea5ee1f1c1ea6e0fa20724fde01950d26d4",
+          "sha1": "46adf41252723b65de30a3d3b6f78d449cef99af",
+          "md5": "0a947c54aadb5eb130d7614932d6e77c"
         }
       ]
     }

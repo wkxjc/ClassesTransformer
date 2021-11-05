@@ -17,10 +17,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        Log.d("~~~", "click")
         if (v?.id == R.id.btn) {
             Toast.makeText(this, "Clicked: ${Date()}", Toast.LENGTH_SHORT).show()
             Log.d("~~~", "Click: ${Date()}")
         }
     }
 }
+
