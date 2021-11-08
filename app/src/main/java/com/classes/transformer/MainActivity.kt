@@ -28,5 +28,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         Log.d("~~~", "Click: ${Date()}")
     }
+
+    /**
+     * Unsupported yet
+     * Because we can only filter such methods with only one view parameter
+     * this will lead to many methods that do not need to prevent repeated clicks being added.
+     */
+    fun clickFromDataBinding(v: View?) {
+        Log.d("~~~", "Click btnDataBinding: ${Date()}")
+    }
+
 }
 

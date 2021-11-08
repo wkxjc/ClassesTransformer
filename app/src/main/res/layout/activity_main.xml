@@ -36,4 +36,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnObject" />
 
+    <Button
+        android:id="@+id/btnDataBinding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="clickFromDataBinding"
+        android:text="onClick=method"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnLambda" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
