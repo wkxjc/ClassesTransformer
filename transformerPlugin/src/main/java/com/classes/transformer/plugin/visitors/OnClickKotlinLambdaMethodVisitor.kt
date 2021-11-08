@@ -10,7 +10,7 @@ import org.objectweb.asm.Opcodes.*
 /**
  * Created by Kevin 2021-11-05
  */
-class OnClickMethodVisitor(private val methodVisitor: MethodVisitor) : MethodVisitor(Opcodes.ASM5, methodVisitor) {
+class OnClickKotlinLambdaMethodVisitor(private val methodVisitor: MethodVisitor) : MethodVisitor(Opcodes.ASM5, methodVisitor) {
     override fun visitCode() {
         super.visitCode()
         methodVisitor.visitFieldInsn(
@@ -19,7 +19,7 @@ class OnClickMethodVisitor(private val methodVisitor: MethodVisitor) : MethodVis
             "INSTANCE",
             "L${DebouncePlugin.applicationId.replace(".", "/")}/transformer/DebounceClickChecker;"
         )
-        methodVisitor.visitVarInsn(ALOAD, 1)
+        methodVisitor.visitVarInsn(ALOAD, 0)
         methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "${DebouncePlugin.applicationId.replace(".", "/")}/transformer/DebounceClickChecker", "needIntercept", "(Landroid/view/View;)Z", false)
         val label1 = Label()
         methodVisitor.visitJumpInsn(IFEQ, label1)
