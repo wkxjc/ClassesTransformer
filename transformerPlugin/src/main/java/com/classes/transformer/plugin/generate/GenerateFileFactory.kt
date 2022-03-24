@@ -14,7 +14,7 @@ object GenerateFileFactory {
     private const val GENERATE_FILE_TASK_NAME = "generateDebounceFile"
     private const val GENERATED_FILE_NAME = "DebounceClickChecker.kt"
     private val PROJECT_BUILD_DIR = DebouncePlugin.project.buildDir
-    private val GENERATED_FILE_SAVED_DIR = "$PROJECT_BUILD_DIR\\generated\\source\\debouncePlugin"
+    private val GENERATED_FILE_SAVED_DIR = "$PROJECT_BUILD_DIR${File.separator}generated${File.separator}source${File.separator}debouncePlugin"
 
     fun addDebounceClickChecker() {
         insertGenerateFileTask()
@@ -25,8 +25,8 @@ object GenerateFileFactory {
         LogUtil.log("Create task: $GENERATE_FILE_TASK_NAME")
         DebouncePlugin.project.task(GENERATE_FILE_TASK_NAME) {
             val file = File(GENERATED_FILE_SAVED_DIR, GENERATED_FILE_NAME)
-            file.parentFile.mkdirs()
-            LogUtil.log("Generate file: $GENERATED_FILE_NAME")
+            val result = file.parentFile.mkdirs()
+            LogUtil.log("Generate file: ${file.absoluteFile}, result = $result")
             val writer = BufferedWriter(FileWriter(file))
             writer.use { it.write(debounceClickCheckerFileContent()) }
         }

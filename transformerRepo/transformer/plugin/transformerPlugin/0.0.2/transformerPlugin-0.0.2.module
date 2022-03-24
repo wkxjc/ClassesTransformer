@@ -10,7 +10,7 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "7.0.2"
+      "version": "7.2"
     }
   },
   "variants": [
@@ -29,11 +29,11 @@
         {
           "name": "transformerPlugin-0.0.2.jar",
           "url": "transformerPlugin-0.0.2.jar",
-          "size": 23203,
-          "sha512": "148c42948163a6c1d4a4838f054fd7aafe91c7484b2c35ec85cc1022c6f008f6fd7c7a7f0996224854ace4c06cfa1996191a1e4283732b5864c3c29933b1a544",
-          "sha256": "d599739e59f4337bcf8d953e40e311edecb6244324dc0043ddec3982ea06f32c",
-          "sha1": "fad5ba63df731c0dde8c5594ea38a49a90de4fc1",
-          "md5": "dcd3743342a6157638b3899ab2b5cccc"
+          "size": 23317,
+          "sha512": "58226ed919c506209349783470915cd367e9d30710c992e4d6cedcae145eddea8b7614de6b5efc244498395b178fdba87c95a455cb69679699d5b7e9d5281ee1",
+          "sha256": "97cb952316602051c202da83567bb2ee959e0a68ad48463388f737a8a83bbf3f",
+          "sha1": "e05a2682b3c1037a1b0af3126d8f07d94dec98b3",
+          "md5": "d6c2a609400cae25013c0ec6ac6ca36b"
         }
       ]
     },
@@ -53,7 +53,7 @@
           "group": "org.jetbrains.kotlin",
           "module": "kotlin-stdlib",
           "version": {
-            "requires": "1.5.31"
+            "requires": "1.5.30"
           }
         },
         {
@@ -82,11 +82,11 @@
         {
           "name": "transformerPlugin-0.0.2.jar",
           "url": "transformerPlugin-0.0.2.jar",
-          "size": 23203,
-          "sha512": "148c42948163a6c1d4a4838f054fd7aafe91c7484b2c35ec85cc1022c6f008f6fd7c7a7f0996224854ace4c06cfa1996191a1e4283732b5864c3c29933b1a544",
-          "sha256": "d599739e59f4337bcf8d953e40e311edecb6244324dc0043ddec3982ea06f32c",
-          "sha1": "fad5ba63df731c0dde8c5594ea38a49a90de4fc1",
-          "md5": "dcd3743342a6157638b3899ab2b5cccc"
+          "size": 23317,
+          "sha512": "58226ed919c506209349783470915cd367e9d30710c992e4d6cedcae145eddea8b7614de6b5efc244498395b178fdba87c95a455cb69679699d5b7e9d5281ee1",
+          "sha256": "97cb952316602051c202da83567bb2ee959e0a68ad48463388f737a8a83bbf3f",
+          "sha1": "e05a2682b3c1037a1b0af3126d8f07d94dec98b3",
+          "md5": "d6c2a609400cae25013c0ec6ac6ca36b"
         }
       ]
     }
