@@ -44,11 +44,13 @@ object GenerateFileFactory {
                    object DebounceClickChecker {
                        var lastClickViewId = -1
                        var lastClickTime = 0L
-                       fun needIntercept(view: View?): Boolean {
+                       
+                       @JvmStatic
+                       fun allow(view: View): Boolean {
                            view ?: return false
                            val time = System.currentTimeMillis()
-                           val intercept = view.id == lastClickViewId && time - lastClickTime < ${DebouncePlugin.debounceConfig.debounceIntervalTime}
-                           if (!intercept) {
+                           val allow = view.id != lastClickViewId || time - lastClickTime > ${DebouncePlugin.debounceConfig.debounceIntervalTime}
+                           if (allow) {
                                lastClickTime = time
                                lastClickViewId = view.id
                            }
@@ -56,8 +58,8 @@ object GenerateFileFactory {
                            if (view.id != 0xffffffff.toInt()) {
                                viewIdName = view.context.resources.getResourceEntryName(view.id)
                            }
-                           Log.d("DebounceClickChecker", if (intercept) "Intercept quick click on ${'$'}viewIdName" else "User clicked ${'$'}viewIdName")
-                           return intercept
+                           Log.d("DebounceClickChecker", if (allow) "User clicked ${'$'}viewIdName" else "Intercept quick click on ${'$'}viewIdName")
+                           return allow
                        }
                    }
                """.trimIndent()

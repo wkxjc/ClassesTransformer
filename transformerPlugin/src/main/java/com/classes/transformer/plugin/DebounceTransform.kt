@@ -2,13 +2,15 @@ package com.classes.transformer.plugin
 
 import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
-import com.classes.transformer.plugin.utils.LogUtil
-import com.classes.transformer.plugin.utils.traverse
-import com.classes.transformer.plugin.visitors.DebounceClassVisitor
+import com.classes.transformer.plugin.utils.*
+import com.classes.transformer.plugin.visitors.DebounceClassNode
 import org.apache.commons.io.FileUtils
 
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
+import org.objectweb.asm.Opcodes
+import org.objectweb.asm.Type
+import org.objectweb.asm.tree.*
 import java.io.File
 import java.io.FileOutputStream
 
@@ -46,11 +48,14 @@ class DebounceTransform : Transform() {
         }.forEach { file ->
             LogUtil.log("Find file: $file")
             val classReader = ClassReader(file.readBytes())
-            val classWriter = ClassWriter(classReader, ClassWriter.COMPUTE_MAXS)
-            val debounceClassVisitor = DebounceClassVisitor(classWriter)
-            classReader.accept(debounceClassVisitor, ClassReader.EXPAND_FRAMES)
-            LogUtil.log(if (debounceClassVisitor.methodChanged) "Start rewriting ${file.name}" else "No method changed in ${file.name}, continue")
-            if (!debounceClassVisitor.methodChanged) return@forEach
+            val debounceClassNode = DebounceClassNode()
+            classReader.accept(debounceClassNode, ClassReader.EXPAND_FRAMES)
+            debounceClassNode.modifyClass()
+            LogUtil.log("class methods: ${debounceClassNode.methods.size}")
+            LogUtil.log(if (debounceClassNode.methodChanged) "Start rewriting ${file.name}" else "No method changed in ${file.name}, continue")
+            if (!debounceClassNode.methodChanged) return@forEach
+            val classWriter = ClassWriter(ClassWriter.COMPUTE_MAXS)
+            debounceClassNode.accept(classWriter)
             FileOutputStream(file.path).use {
                 it.write(classWriter.toByteArray())
             }
