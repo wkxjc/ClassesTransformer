@@ -19,21 +19,21 @@
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
         "org.gradle.jvm.version": 11,
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-api",
-        "org.jetbrains.kotlin.localToProject": "public",
         "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "files": [
         {
           "name": "transformerPlugin-0.0.2.jar",
           "url": "transformerPlugin-0.0.2.jar",
-          "size": 23317,
-          "sha512": "58226ed919c506209349783470915cd367e9d30710c992e4d6cedcae145eddea8b7614de6b5efc244498395b178fdba87c95a455cb69679699d5b7e9d5281ee1",
-          "sha256": "97cb952316602051c202da83567bb2ee959e0a68ad48463388f737a8a83bbf3f",
-          "sha1": "e05a2682b3c1037a1b0af3126d8f07d94dec98b3",
-          "md5": "d6c2a609400cae25013c0ec6ac6ca36b"
+          "size": 23297,
+          "sha512": "dd0b8e7ebfc91474203d6acc3a67524d59d3ecfdb525cfeff039816180d529eeee32b7d52b247dc806b07ac97557bfe29dcb11e617864ca9a5960c486eb078c9",
+          "sha256": "a978f4231647f47061f5e3dc3789d6e07131f413e31df742a9e1df858125016e",
+          "sha1": "c7eba15cbec9f42307f8958e122f0098433a2728",
+          "md5": "87aa493c1fc950447ab87538c68b5593"
         }
       ]
     },
@@ -42,10 +42,10 @@
       "attributes": {
         "org.gradle.category": "library",
         "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
         "org.gradle.jvm.version": 11,
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.localToProject": "public",
         "org.jetbrains.kotlin.platform.type": "jvm"
       },
       "dependencies": [
@@ -53,7 +53,7 @@
           "group": "org.jetbrains.kotlin",
           "module": "kotlin-stdlib",
           "version": {
-            "requires": "1.5.30"
+            "requires": "1.6.10"
           }
         },
         {
@@ -82,11 +82,11 @@
         {
           "name": "transformerPlugin-0.0.2.jar",
           "url": "transformerPlugin-0.0.2.jar",
-          "size": 23317,
-          "sha512": "58226ed919c506209349783470915cd367e9d30710c992e4d6cedcae145eddea8b7614de6b5efc244498395b178fdba87c95a455cb69679699d5b7e9d5281ee1",
-          "sha256": "97cb952316602051c202da83567bb2ee959e0a68ad48463388f737a8a83bbf3f",
-          "sha1": "e05a2682b3c1037a1b0af3126d8f07d94dec98b3",
-          "md5": "d6c2a609400cae25013c0ec6ac6ca36b"
+          "size": 23297,
+          "sha512": "dd0b8e7ebfc91474203d6acc3a67524d59d3ecfdb525cfeff039816180d529eeee32b7d52b247dc806b07ac97557bfe29dcb11e617864ca9a5960c486eb078c9",
+          "sha256": "a978f4231647f47061f5e3dc3789d6e07131f413e31df742a9e1df858125016e",
+          "sha1": "c7eba15cbec9f42307f8958e122f0098433a2728",
+          "md5": "87aa493c1fc950447ab87538c68b5593"
         }
       ]
     }
