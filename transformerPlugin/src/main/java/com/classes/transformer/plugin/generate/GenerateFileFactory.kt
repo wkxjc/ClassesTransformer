@@ -25,8 +25,8 @@ object GenerateFileFactory {
         LogUtil.log("Create task: $GENERATE_FILE_TASK_NAME")
         DebouncePlugin.project.task(GENERATE_FILE_TASK_NAME) {
             val file = File(GENERATED_FILE_SAVED_DIR, GENERATED_FILE_NAME)
-            val result = file.parentFile.mkdirs()
-            LogUtil.log("Generate file: ${file.absoluteFile}, result = $result")
+            file.parentFile.mkdirs()
+            LogUtil.log("Generate file: ${file.absolutePath}")
             val writer = BufferedWriter(FileWriter(file))
             writer.use { it.write(debounceClickCheckerFileContent()) }
         }
@@ -52,7 +52,10 @@ object GenerateFileFactory {
                                lastClickTime = time
                                lastClickViewId = view.id
                            }
-                           val viewIdName = view.context.resources.getResourceEntryName(view.id)
+                           var viewIdName = "unknownView"
+                           if (view.id != 0xffffffff.toInt()) {
+                               viewIdName = view.context.resources.getResourceEntryName(view.id)
+                           }
                            Log.d("DebounceClickChecker", if (intercept) "Intercept quick click on ${'$'}viewIdName" else "User clicked ${'$'}viewIdName")
                            return intercept
                        }
@@ -64,7 +67,7 @@ object GenerateFileFactory {
      * sourceSets {
      *     main {
      *         java {
-     *             srcDirs += ['build/generated/source/transformer']
+     *             srcDirs += ['build/generated/source/debouncePlugin']
      *         }
      *     }
      * }

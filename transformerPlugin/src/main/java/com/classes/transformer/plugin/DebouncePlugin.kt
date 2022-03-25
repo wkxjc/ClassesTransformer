@@ -22,8 +22,7 @@ class DebouncePlugin : Plugin<Project> {
     override fun apply(project: Project) {
         DebouncePlugin.project = project
         debounceConfig = project.extensions.create(EXTENSION_PLUGIN_NAME, DebounceConfig::class.java)
-        val androidExtension = DebouncePlugin.project.extensions.getByType(AppExtension::class.java)
-        applicationId = androidExtension.defaultConfig.applicationId!!
+        applicationId = project.extensions.getByType(AppExtension::class.java).defaultConfig.applicationId!!
         LogUtil.log("DebouncePlugin: applicationId = $applicationId, debounceConfig = $debounceConfig")
         if (!debounceConfig.isDebounceClick) return
         GenerateFileFactory.addDebounceClickChecker()

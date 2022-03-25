@@ -17,7 +17,7 @@ open class DebounceConfig {
     var debounceIntervalTime: Long = 500L
 
     override fun toString(): String {
-        return "(isDebug = $isDebug, isDebounceClick = $isDebounceClick, debounceIntervalTime = $debounceIntervalTime)"
+        return "isDebug = $isDebug, isDebounceClick = $isDebounceClick, debounceIntervalTime = $debounceIntervalTime"
     }
 }
 

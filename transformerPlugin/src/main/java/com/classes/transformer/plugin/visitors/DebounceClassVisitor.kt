@@ -21,7 +21,7 @@ class DebounceClassVisitor(cv: ClassVisitor) : ClassVisitor(Opcodes.ASM5, cv) {
             methodChanged = true
             return OnClickMethodVisitor(mv)
         }
-        if(MethodUtils.isKotlinLambdaViewOnclickMethod(access,name,descriptor)){
+        if (MethodUtils.isKotlinLambdaViewOnclickMethod(access, name, descriptor)) {
             LogUtil.log("Find Kotlin lambda method: $name")
             methodChanged = true
             return OnClickKotlinLambdaMethodVisitor(mv)
