@@ -29,11 +29,11 @@
         {
           "name": "transformerPlugin-0.0.2.jar",
           "url": "transformerPlugin-0.0.2.jar",
-          "size": 26640,
-          "sha512": "9484c36622926e3cbca42c126b765eec799f78d9f2a6c29d301b6a3b39aad5ce496898f8ef419a81871da776bb2451a4a855c85dcb7e808740b7cb57aa6f495e",
-          "sha256": "731428f11703ee13081daf9fdbb2762e5ec8d3217e2df91216309604d5d5a442",
-          "sha1": "f1139cab243be0a87fed3a7c8c5966005d313266",
-          "md5": "5a1fc4beb3d1a3008b11bb865d504d46"
+          "size": 26644,
+          "sha512": "0a9da4952e67b0ece08a2632a72294b7269c6f477d9ccdf6f95d21bf046d06381392eb41ddea2800fdcd28c11dc06e7cf7c1d4a4a5bb18a25045289bd790ea40",
+          "sha256": "f65ed8903de5051d604a564f032e1c91be3abfdf0b305d90e60ed961e30e42ff",
+          "sha1": "8b3eaa8089fa696f6285a3c826ce2e3ad543e402",
+          "md5": "c0d9273ebb60713cd20f21edd09fb31e"
         }
       ]
     },
@@ -60,21 +60,7 @@
           "group": "com.android.tools.build",
           "module": "gradle",
           "version": {
-            "requires": "4.1.3"
-          }
-        },
-        {
-          "group": "org.ow2.asm",
-          "module": "asm",
-          "version": {
-            "requires": "9.1"
-          }
-        },
-        {
-          "group": "org.ow2.asm",
-          "module": "asm-commons",
-          "version": {
-            "requires": "9.1"
+            "requires": "7.1.2"
           }
         }
       ],
@@ -82,11 +68,11 @@
         {
           "name": "transformerPlugin-0.0.2.jar",
           "url": "transformerPlugin-0.0.2.jar",
-          "size": 26640,
-          "sha512": "9484c36622926e3cbca42c126b765eec799f78d9f2a6c29d301b6a3b39aad5ce496898f8ef419a81871da776bb2451a4a855c85dcb7e808740b7cb57aa6f495e",
-          "sha256": "731428f11703ee13081daf9fdbb2762e5ec8d3217e2df91216309604d5d5a442",
-          "sha1": "f1139cab243be0a87fed3a7c8c5966005d313266",
-          "md5": "5a1fc4beb3d1a3008b11bb865d504d46"
+          "size": 26644,
+          "sha512": "0a9da4952e67b0ece08a2632a72294b7269c6f477d9ccdf6f95d21bf046d06381392eb41ddea2800fdcd28c11dc06e7cf7c1d4a4a5bb18a25045289bd790ea40",
+          "sha256": "f65ed8903de5051d604a564f032e1c91be3abfdf0b305d90e60ed961e30e42ff",
+          "sha1": "8b3eaa8089fa696f6285a3c826ce2e3ad543e402",
+          "md5": "c0d9273ebb60713cd20f21edd09fb31e"
         }
       ]
     }

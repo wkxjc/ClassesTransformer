@@ -17,6 +17,10 @@ fun File.traverse(): MutableList<File> = mutableListOf<File>().apply {
     else add(this@traverse)
 }
 
+/**
+ * Check if the methodNode of this classNode is onClick method
+ * @param methodNode
+ */
 fun ClassNode.isOnClickMethod(methodNode: MethodNode): Boolean {
     if (interfaces.isNullOrEmpty()) return false
     LogUtil.log("interfaces: ${interfaces.joinToString()}")
@@ -28,14 +32,14 @@ fun ClassNode.isOnClickMethod(methodNode: MethodNode): Boolean {
     return false
 }
 
-val MethodNode.nameWithDesc: String
-    get() = name + desc
-
-val MethodNode.isStatic: Boolean
-    get() = access and Opcodes.ACC_STATIC != 0
-
+/**
+ * find all lambda expressions in the methodNode
+ */
 fun MethodNode.findLambda(): List<InvokeDynamicInsnNode> = instructions.filterIsInstance<InvokeDynamicInsnNode>()
 
+/**
+ * Check if the lambda expression is handled by onClick method
+ */
 fun InvokeDynamicInsnNode.isOnClickMethod(): Boolean {
     LogUtil.log("name: $name, desc: $desc, bsmArgs: ${bsmArgs?.joinToString()}")
     return hookPoints.firstOrNull { name == it.methodName && desc.endsWith(it.interfaceSignSuffix) && bsmArgs[1] != null } != null
@@ -43,25 +47,19 @@ fun InvokeDynamicInsnNode.isOnClickMethod(): Boolean {
 
 fun InvokeDynamicInsnNode.handleNameWithDesc(): String = (bsmArgs[1] as Handle).let { it.name + it.desc }
 
-fun getVisitPosition(
-    argumentTypes: Array<Type>,
-    parameterIndex: Int,
-    isStaticMethod: Boolean
-): Int {
+val MethodNode.nameWithDesc: String
+    get() = name + desc
+
+val MethodNode.isStatic: Boolean
+    get() = access and Opcodes.ACC_STATIC != 0
+
+fun getVisitPosition(argumentTypes: Array<Type>, parameterIndex: Int, isStaticMethod: Boolean): Int {
     if (parameterIndex < 0 || parameterIndex >= argumentTypes.size) {
         throw Error("getVisitPosition error")
     }
     return if (parameterIndex == 0) {
-        if (isStaticMethod) {
-            0
-        } else {
-            1
-        }
+        if (isStaticMethod) 0 else 1
     } else {
-        getVisitPosition(
-            argumentTypes,
-            parameterIndex - 1,
-            isStaticMethod
-        ) + argumentTypes[parameterIndex - 1].size
+        getVisitPosition(argumentTypes, parameterIndex - 1, isStaticMethod) + argumentTypes[parameterIndex - 1].size
     }
 }

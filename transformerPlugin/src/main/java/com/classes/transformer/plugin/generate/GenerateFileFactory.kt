@@ -49,7 +49,7 @@ object GenerateFileFactory {
                        fun allow(view: View): Boolean {
                            view ?: return false
                            val time = System.currentTimeMillis()
-                           val allow = view.id != lastClickViewId || time - lastClickTime > ${DebouncePlugin.debounceConfig.debounceIntervalTime}
+                           val allow = view.id == 0xffffffff.toInt() || view.id != lastClickViewId || time - lastClickTime > ${DebouncePlugin.debounceConfig.debounceIntervalTime}
                            if (allow) {
                                lastClickTime = time
                                lastClickViewId = view.id
