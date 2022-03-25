@@ -16,16 +16,17 @@ import java.io.FileOutputStream
  * Created by Kevin 2021-11-05
  */
 class DebounceTransform : Transform() {
-    override fun getName(): String = this.javaClass.name
+    override fun getName(): String = javaClass.name
 
-    override fun getInputTypes(): MutableSet<QualifiedContent.ContentType> = TransformManager.CONTENT_CLASS
+    override fun getInputTypes(): Set<QualifiedContent.ContentType> = TransformManager.CONTENT_CLASS
 
     override fun getScopes(): MutableSet<in QualifiedContent.Scope> = TransformManager.SCOPE_FULL_PROJECT
 
-    override fun isIncremental() = false
+    override fun isIncremental() = true
 
     override fun transform(transformInvocation: TransformInvocation?) {
         LogUtil.log("DebounceTransform starts")
+        val startTime = System.currentTimeMillis()
         transformInvocation?.inputs?.forEach {
             LogUtil.log("TransformInput: $it")
             it.directoryInputs.forEach { input ->
@@ -36,7 +37,7 @@ class DebounceTransform : Transform() {
                 FileUtils.copyFile(input.file, transformInvocation.outputProvider.getContentLocation(input.name, input.contentTypes, input.scopes, Format.JAR))
             }
         }
-        LogUtil.log("DebounceTransform finished")
+        LogUtil.log("DebounceTransform finished, spent: ${System.currentTimeMillis() - startTime}ms")
     }
 
     private fun transformDirectoryInput(input: DirectoryInput) {
