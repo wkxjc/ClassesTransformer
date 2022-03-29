@@ -1,3 +1,4 @@
 include ':transformerPlugin'
 include ':app'
 rootProject.name = "ClassesTransformer"
+include ':debounceAnnotation'

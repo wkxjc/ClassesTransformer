@@ -53,6 +53,20 @@ val MethodNode.nameWithDesc: String
 val MethodNode.isStatic: Boolean
     get() = access and Opcodes.ACC_STATIC != 0
 
+fun MethodNode.hasAnnotation(annotationDesc: String): Boolean {
+    LogUtil.log("visibleAnnotations: " + visibleAnnotations?.map { it.desc }?.joinToString())
+    return visibleAnnotations?.find { it.desc == annotationDesc } != null
+}
+
+fun MethodNode.withoutNoDebounceAnnotation() = !hasAnnotation("Lcom/debounce/annotation/NoDebounceClick;")
+
+fun MethodNode.withDebounceAnnotation() = hasAnnotation("Lcom/debounce/annotation/DebounceClick;")
+
+/**
+ * Make sure there's only a View parameter in the method signature, and return type is void
+ */
+fun MethodNode.isValidOnClickMethod() = desc == "(Landroid/view/View;)V"
+
 fun getVisitPosition(argumentTypes: Array<Type>, parameterIndex: Int, isStaticMethod: Boolean): Int {
     if (parameterIndex < 0 || parameterIndex >= argumentTypes.size) {
         throw Error("getVisitPosition error")

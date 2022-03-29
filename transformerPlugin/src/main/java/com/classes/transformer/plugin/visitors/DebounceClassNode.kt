@@ -17,19 +17,15 @@ class DebounceClassNode : ClassNode(Opcodes.ASM9) {
     private val debounceCheckMethodDescriptor: String = "(Landroid/view/View;)Z"
 
     fun modifyClass() {
-        val onClickMethods = mutableListOf<String>()
-        // Collect normal OnClick method in class
-        val onClickMethod = methods.filter { isOnClickMethod(it) }
-        onClickMethods.addAll(onClickMethod.map { it.nameWithDesc })
-        LogUtil.log("methods: ${methods.size}, onClickMethod: ${onClickMethod.size}")
-        // Collect lambda expressions in every single method
-        methods.forEach {
-            val lambdaExpressions = it.findLambda()
-            val onClickExpressions = lambdaExpressions.filter { it.isOnClickMethod() }
-            LogUtil.log("lambdaExpressions: ${lambdaExpressions.size}, onClickExpressions: ${onClickExpressions.size}")
-            onClickMethods.addAll(onClickExpressions.map { it.handleNameWithDesc() })
+        val onClickMethods = mutableSetOf<String>().apply {
+            // Collect onClick method in class
+            addAll(onClickMethodInClass())
+            // Collect lambda expressions in every single method
+            addAll(onClickExpressions())
+            // Collect annotation
+            addAll(annotationMethods())
         }
-        LogUtil.log("onClickMethods size: " + onClickMethods.size + ", onClickMethods: ${onClickMethods.joinToString()}")
+        LogUtil.log("onClickMethods: " + onClickMethods.joinToString() + ", onClickMethods: ${onClickMethods.joinToString()}")
         if (onClickMethods.isEmpty()) return
         methods.forEach { methodNode ->
             LogUtil.log("methodNameWithDesc: ${methodNode.nameWithDesc}")
@@ -55,4 +51,33 @@ class DebounceClassNode : ClassNode(Opcodes.ASM9) {
             }
         }
     }
+
+    private fun onClickMethodInClass(): List<String> {
+        val onClickMethods = methods.filter { it.withoutNoDebounceAnnotation() && isOnClickMethod(it) }
+            .map { it.nameWithDesc }
+        LogUtil.log("methods: ${methods.joinToString()}, onClickMethods: ${onClickMethods.joinToString()}")
+        return onClickMethods
+    }
+
+    private fun onClickExpressions(): List<String> {
+        val onClickExpressions = mutableListOf<String>()
+        methods.filter { it.withoutNoDebounceAnnotation() }
+            .forEach {
+                val lambdaExpressions = it.findLambda()
+                val onClickExpressionsInSingleMethod =
+                    lambdaExpressions.filter { it.isOnClickMethod() }
+                LogUtil.log("lambdaExpressions: ${lambdaExpressions.joinToString()}, onClickExpressionsInSingleMethod: ${onClickExpressionsInSingleMethod.joinToString()}")
+                onClickExpressions.addAll(onClickExpressionsInSingleMethod.map { it.handleNameWithDesc() })
+            }
+        return onClickExpressions
+    }
+
+    private fun annotationMethods(): List<String> {
+        val annotationMethods = methods.filter { it.withoutNoDebounceAnnotation() && it.withDebounceAnnotation() }
+            .filter { it.isValidOnClickMethod() }
+            .map { it.nameWithDesc }
+        LogUtil.log("annotationMethods: ${annotationMethods.joinToString()}")
+        return annotationMethods
+    }
+
 }

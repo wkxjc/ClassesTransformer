@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.debounce.annotation.DebounceClick
+import com.debounce.annotation.NoDebounceClick
 import java.util.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -29,14 +31,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         Log.d("~~~", "Click: ${Date()}")
     }
 
-    /**
-     * Unsupported yet
-     * Because we can only filter such methods with only one view parameter
-     * this will lead to many methods that do not need to prevent repeated clicks being added.
-     */
+    @DebounceClick
     fun clickFromDataBinding(v: View?) {
         Log.d("~~~", "Click btnDataBinding: ${Date()}")
     }
 
+    @NoDebounceClick
+    fun clickFromDataBindingWithNoDebounce(v: View?) {
+        Log.d("~~~", "Click btnDataBindingNoDebounce: ${Date()}")
+    }
 }
 
